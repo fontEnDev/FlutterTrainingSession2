@@ -67,7 +67,7 @@ class _MyCart extends State<MyCart> {
                   ),
                   ListView.builder(
                     shrinkWrap: true,
-                    itemCount: 10,
+                    itemCount: 4,
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
