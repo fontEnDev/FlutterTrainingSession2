@@ -66,6 +66,7 @@ class _MyCart extends State<MyCart> {
                     height: 10,
                   ),
                   ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 4,
                     itemBuilder: (context, index) {
