@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:training/common_widget/appbar_widget.dart';
+
+import '../common_widget/add_product.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
@@ -10,39 +13,11 @@ class MyCart extends StatefulWidget {
 class _MyCart extends State<MyCart> {
   @override
   Widget build(BuildContext context) {
-    int _quantity = 1;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SafeArea(
+    return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_circle_left_rounded,
-                size: 45,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            actions: [
-              Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.grey[400]),
-                  width: 40,
-                  height: 40,
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 22,
-                      )))
-            ],
-          ),
+          appBar: const AppBarWidget(),
           body: Container(
+            height: MediaQuery.of(context).size.height,
             margin:
                 const EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 10),
             child: SingleChildScrollView(
@@ -68,7 +43,7 @@ class _MyCart extends State<MyCart> {
                   ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: 4,
+                    itemCount: 14,
                     itemBuilder: (context, index) {
                       return Row(
                         children: [
@@ -115,47 +90,15 @@ class _MyCart extends State<MyCart> {
                               ],
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             flex: 0,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                const SizedBox(
+                                SizedBox(
                                   height: 40,
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.rectangle,
-                                      color: Colors.grey[300],
-                                      border: Border.all(
-                                          color: Colors.grey, width: 1.0),
-                                      borderRadius: BorderRadius.circular(40)),
-                                  alignment: Alignment.center,
-                                  height: 30,
-                                  child: Row(
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.remove,
-                                          size: 16,
-                                        ),
-                                      ),
-                                      Text(
-                                        '$_quantity',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            _quantity += 1;
-                                          });
-                                        },
-                                        icon: const Icon(Icons.add, size: 16),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                AddProduct()
                               ],
                             ),
                           ),
@@ -204,7 +147,7 @@ class _MyCart extends State<MyCart> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
@@ -213,7 +156,7 @@ class _MyCart extends State<MyCart> {
                           backgroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
-                                10), // Điều chỉnh giá trị để bo góc tròn
+                                10),
                           ),
                           fixedSize:
                               Size(MediaQuery.of(context).size.width, 40)),
@@ -229,8 +172,7 @@ class _MyCart extends State<MyCart> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 
   Row priceProduct(String type, String? numberItem, String cost) {
